@@ -8,9 +8,15 @@
 
 
 20.times do |i|
-  note = {
+  data = {
     title: "Test Title #{i}", 
     content: "Test Content #{i}"
     }
-    Note.create(note)
+    note = Note.create(data)
+    number_of_likes = rand(1..20)
+    number_of_likes.times do |i|
+      Like.create(note_id: note.id)
+      Comment.create(note_id: note.id, content: "Test Comment #{i}")
+    end 
 end
+
